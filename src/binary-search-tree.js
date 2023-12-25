@@ -1,18 +1,18 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
-const { Node } = require('../extensions/list-tree.js');
+const { Node } = require("../extensions/list-tree.js");
 
 /**
-* Implement simple binary search tree according to task description
-* using Node from extensions
-*/
+ * Implement simple binary search tree according to task description
+ * using Node from extensions
+ */
 
 class BinarySearchTree {
   constructor() {
     this.rootValue = null;
   }
 
-  root(){
+  root() {
     return this.rootValue;
   }
   find(value) {
@@ -62,9 +62,9 @@ class BinarySearchTree {
         return true;
       }
 
-      return value < node.data ? 
-        searchWithin(node.left, value) : 
-        searchWithin(node.right, value);
+      return value < node.data
+        ? searchWithin(node.left, value)
+        : searchWithin(node.right, value);
     }
   }
 
@@ -147,8 +147,9 @@ class BinarySearchTree {
     function doLeft(node, cb) {
       if (node) {
         doLeft(node.left, cb);
-        cb(node.data);
-        doLeft(node.right, cb);          
+        cb(node);
+        
+        doLeft(node.right, cb);
       }
     }
   }
@@ -164,18 +165,19 @@ class BinarySearchTree {
       }
     }
   }
-  find(value){
-    let dump=null;
-    console.log('  Left Traverse:');
+  find(value) {
+    let dump = null;
+    console.log("  Left Traverse:");
     // for (var prop in Things) {
     //   Things[prop]
     // }
-    
-  this.leftTraverse((val) => val.data==value?dump=val:console.log(val.data));
-  return dump;
+
+    this.leftTraverse((val) => val.data == value && (dump = val));
+    //console.debug(dump);
+    return dump;
   }
 }
 
 module.exports = {
-  BinarySearchTree
+  BinarySearchTree,
 };
